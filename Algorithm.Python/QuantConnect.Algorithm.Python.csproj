@@ -142,6 +142,7 @@
   <ItemGroup>
     <Content Include="SectorExposureRiskFrameworkAlgorithm.py" />
     <None Include="TimeInForceAlgorithm.py" />
+    <Content Include="EmaCrossUniverseSelectionFrameworkAlgorithm.py" />
     <Content Include="PairsTradingAlphaModelFrameworkAlgorithm.py" />
     <Content Include="StandardDeviationExecutionModelRegressionAlgorithm.py" />
     <Content Include="VolumeWeightedAveragePriceExecutionModelRegressionAlgorithm.py" />
