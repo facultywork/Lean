@@ -39,13 +39,28 @@ RUN rm -irf ${WORK}/*Python* && \
     find ${WORK} -type f -not -name '*.dll' -not -name '*.ipynb' -not -name '*.csx' -delete && \
     echo "{ \"data-folder\": \"/home/Data/\", \"composer-dll-directory\": \"$WORK\" }" > ${WORK}/config.json 
 
-EXPOSE 8888
+EXPOSE 8866
 WORKDIR $WORK
 
 ENTRYPOINT [ "/usr/local/bin/tini", "--" ]
-CMD jupyter notebook --ip='*' --port=8888 --no-browser --allow-root
+CMD jupyter notebook --ip='*' --port=8866 --no-browser --allow-root
 
 # Usage:
 # docker build -t quantconnect/lean:foundation -f DockerfileLeanFoundation .
 # docker build -t quantconnect/jupyter -f DockerfileJupyter .
-# docker run -it --rm -p 8888:8888 -v (absolute to your data folder):/home/Data:ro quantconnect/jupyter
+
+# WORKING
+# docker run -it -p 8866:8866 -v $(pwd)/Data:/home/Data:rw -v $(pwd)/Launcher/bin/Debug:/root/Lean/Launcher/bin/Debug:rw quantconnect/jupyter
+# docker run -it -p 8866:8866 -v $(pwd)/Launcher/bin/Debug:/root/Lean/Launcher/bin/Debug:rw -v $(pwd)/Data:/home/Data:rw quantconnect/jupyter
+# docker run -it -p 8866:8866 -v $(pwd)/Data:/home/Data:rw quantconnect/jupyter
+
+
+# BAD
+# docker run -it --rm -p 8866:8866 -v $(pwd)/Data:/home/Data:rw quantconnect/jupyter
+# docker run -it -p 8866:8866 -v $(pwd)/Data:/root/Lean/Data:rw -v $(pwd)/Jupyter:/root/Lean/bin/Debug:rw quantconnect/jupyter
+# docker run -it -p 8866:8866 -v $(pwd)/Data:/root/Lean/Data:rw -v $(pwd)/Launcher/bin/Debug/:/root/Lean/Launcher/bin/Debug:rw quantconnect/jupyter
+# docker run -it -p 8866:8866 -v $(pwd)/Data:/root/Lean/Data:rw -v $(pwd)/Launcher/bin/Debug:/root/Lean/Launcher/bin/Debug:rw quantconnect/jupyter
+# docker run -it -p 8866:8866 -v $(pwd)/Data:/root/Lean/Data:rw -v $(pwd)/Launcher/bin/Debug:/root/Lean/Launcher/bin/Debug:rw -v $(pwd)/Jupyter:/root/Lean/bin/Debug:rw quantconnect/jupyter
+# docker run -it -p 8866:8866 -v $(pwd)/Data:/root/Lean/Data:rw quantconnect/jupyter
+# docker run -it -p 8866:8866 -v $(pwd)/Data:/home/Data:rw -v $(pwd)/Jupyter:/root/Lean/Launcher/bin/Debug:rw quantconnect/jupyter
+
