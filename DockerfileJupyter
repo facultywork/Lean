@@ -51,6 +51,9 @@ CMD jupyter notebook --ip='*' --port=8866 --no-browser --allow-root
 
 # WORKING
 # docker run -it -p 8866:8866 -v $(pwd)/Data:/home/Data:rw quantconnect/jupyter
+# Keep Notebooks in /Launcher/bin/Debug/ and rebuild image
+# Put data in Equity or Fx and then try CFD
+
 # docker run -it -p 8866:8866 -v $(pwd)/Data:/home/Data:rw -v $(pwd)/Jupyter/bin/Debug:/root/Lean/Launcher/bin/Debug:rw quantconnect/jupyter
 
 # docker run -it -p 8866:8866 -v $(pwd)/Data:/home/Data:rw -v $(pwd)/Launcher/bin/Debug:/root/Lean/Launcher/bin/Debug:rw quantconnect/jupyter
