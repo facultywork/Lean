@@ -50,9 +50,11 @@ CMD jupyter notebook --ip='*' --port=8866 --no-browser --allow-root
 # docker build -t quantconnect/jupyter -f DockerfileJupyter .
 
 # WORKING
+# docker run -it -p 8866:8866 -v $(pwd)/Data:/home/Data:rw quantconnect/jupyter
+# docker run -it -p 8866:8866 -v $(pwd)/Data:/home/Data:rw -v $(pwd)/Jupyter/bin/Debug:/root/Lean/Launcher/bin/Debug:rw quantconnect/jupyter
+
 # docker run -it -p 8866:8866 -v $(pwd)/Data:/home/Data:rw -v $(pwd)/Launcher/bin/Debug:/root/Lean/Launcher/bin/Debug:rw quantconnect/jupyter
 # docker run -it -p 8866:8866 -v $(pwd)/Launcher/bin/Debug:/root/Lean/Launcher/bin/Debug:rw -v $(pwd)/Data:/home/Data:rw quantconnect/jupyter
-# docker run -it -p 8866:8866 -v $(pwd)/Data:/home/Data:rw quantconnect/jupyter
 
 
 # BAD
